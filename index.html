@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Software engineer passionate about creating value through code. Explore my work and connect with me." />
+    <meta name="keywords" content="Taqmeel Zubeir, Software Engineer, Developer, Programming, DevOps" />
+    <meta name="author" content="Taqmeel Zubeir" />
+    <title>Taqmeel Zubeir</title>
+
+    <!-- Favicon -->
+    <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAALcSURBVDiNbZFbSNNxHMXPb5f/f/f9p9t0lq4yrFxmF7QEuwphaVkSRdSCelpFjz1URBkUk6AoqOyhXoLuC4oekjAKcqFSo6XLXHPmbbrN/mvu1m7/XnJN1/fxxzkffuccgtxTbqla1Da/UFGhYSQ0AARCMUGeTJTW68RRwiUvHr/87j2AEQDgzzELd2woe/OgdU99c90yrccXzTPtXZN37paVKS1WquIJaKfD0SaxiN/jGg325QAMpZrT5011Bz47/QRcGmdvWNHrGsPvRAL97iDum3ejXM/wPjomdLYB310AEGQDFhSp1n2we3gd3SNYUaYAoyDw/eTw8vp+9Lv9iMQSyGckEFF8ZsbDy/LzpRLhwkQyBgGfQ2A6hRbTRjRt1sPjn4ZSTqOl7S2cw1P4FYmHZkwkC1DUvGVpW8Omyh08ehH4XIgVSbWqWQ2lUrjz+Plku9VmADA1N8J4MpVOsMHfOLivDi9ePYOxsXF2xek07A63sN1qm5p5mtUBx5HUoYYyPLVcg+XtgLxAq8fOrVsBAPcsFgwNOdDr9Kb+lp/KAYz7gp2uEbbRWL9AHAjH0W3rhEgkw6fez6hanESJgcBmj7TMmHNm9PhDXfbvk8TDcutpSig8aVyJcNCN6mVSVCzW4FG7Hdtra1rvv+r68b8VAAA9X8auNdQbfd4AwZueYcgkFHRqGXg8ghpDIa48eF2SrRfMBVAUVTI64ZWZz5yDwzkIu8uJE2ZLvFSv7KcIl9/R5bBk6zMzVlcuNzEKRa1Oqy6/fenMKpqiMqK+vm/J01dvdsfiSbdcTMt4hPfpSXvHhQyApuklNy+c6jyytyl/7o9yj8PDx8+Tx8zXV7Ms+4UUFxUflkvFR9euqqiSisUZWTDohU4tA0EaXv9PSBT/okfDEdi+OgfD8XibgBCyrUBTOM/PhiN+NpwReb2D9Hz1QkKQhnNomDBqSTSTm4CvYvI1kcmJXX8AdqocKV5i6K8AAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
+
+    <!-- Fonts/Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@100..900&family=Funnel+Display:wght@800&family=Raleway:wght@700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d11b00fbd5.js" crossorigin="anonymous"></script>
+
+    <style>
+        :root {
+            --cream: #f8f3d4;
+            --red: #f6416c;
+            --teal: #00b8a9;
+            --text-dark: #2c3e50;
+            --yellow: #ffde7d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--cream), white);
+            color: var(--text-dark);
+            font-family: "Bitter", sans-serif;
+            overflow-x: hidden;
+        }
+
+        footer {
+            background-color: var(--cream);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 2px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .bored-btn {
+            background: linear-gradient(135deg, var(--teal), #007f6a);
+            border-radius: 5px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-family: "Raleway", sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 40px;
+            padding: 15px;
+            transition: transform 0.3s ease;
+            width: 80%;
+        }
+
+        .bored-btn.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.95);
+        }
+
+        .bored-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .btn-email {
+            background: linear-gradient(135deg, var(--red), #c71610);
+        }
+
+        .btn-github {
+            background: linear-gradient(135deg, var(--text-dark), #1a252f);
+        }
+
+        .btn-linkedin {
+            background: linear-gradient(135deg, var(--teal), #005885);
+        }
+
+        .cell {
+            align-items: center;
+            background: white;
+            border-radius: 15px;
+            border: 3px solid var(--teal);
+            cursor: pointer;
+            display: flex;
+            font-family: "Funnel Display", sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            height: 90px;
+            justify-content: center;
+            transition: transform 0.3s ease;
+            width: 90px;
+        }
+
+        .cell.o {
+            color: var(--teal);
+        }
+
+        .cell.win {
+            background: var(--cream);
+            box-shadow: 0 0 10px 3px var(--teal);
+            transform: scale(1.025);
+        }
+
+        .cell.x {
+            color: var(--red);
+        }
+
+        .cell:hover {
+            background: var(--cream);
+            transform: scale(1.05);
+        }
+
+        .container {
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .cta {
+            background: var(--yellow);
+            padding: 30px;
+        }
+
+        .cta h2 {
+            font-family: "Funnel Display", sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin: 40px auto;
+            max-width: 800px;
+        }
+
+        .cta-btn {
+            align-items: center;
+            border-radius: 50%;
+            color: white;
+            display: inline-flex;
+            font-size: 1.5rem;
+            height: 50px;
+            justify-content: center;
+            transition: transform 0.3s ease;
+            width: 50px;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .cta-buttons a {
+            text-decoration: none;
+        }
+
+        .game-section {
+            background-color: white;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .game-section h2 {
+            color: var(--teal);
+            font-family: "Funnel Display", sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .game-section p {
+            font-size: 1.2rem;
+        }
+
+        .game-section.active {
+            max-height: 800px;
+            opacity: 1;
+            padding: 25px;
+        }
+
+        .game-status {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 15px;
+        }
+
+        .hero {
+            align-items: center;
+            display: flex;
+            font-family: "Funnel Display", sans-serif;
+            font-weight: 800;
+            height: 100vh;
+            justify-content: center;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+        }
+
+        .name-gradient {
+            background: linear-gradient(125deg, var(--yellow), var(--red));
+            background-size: 200%;
+            background-repeat: no-repeat;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: clamp(3rem,8vw,6rem);
+            opacity: 0;
+            transition: background-position 0.2s ease;
+            animation: fadeInOnce 1.5s ease-out forwards;
+        }
+
+        .reset-btn {
+            background: var(--red);
+            border-radius: 5px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-family: "Raleway", sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 15px;
+            max-width: 300px;
+            padding: 15px;
+            width: 80%;
+        }
+
+        .tic-tac-toe {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(3,1fr);
+            margin: 25px auto;
+            max-width: 300px;
+        }
+
+        @keyframes fadeInOnce {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Hi, I am</h2>
+                <h1><span class="name-gradient">Taqmeel Zubeir</span></h1>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <h2>Let's Start a Conversation.</h2>
+                <div class="cta-buttons">
+                    <a href="https://linkedin.com/in/taqmeel-zubeir" class="cta-btn btn-linkedin" target="_blank" rel="noopener noreferrer" aria-label="Connect with me on LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+                    <a href="https://github.com/z0o0p" class="cta-btn btn-github" target="_blank" rel="noopener noreferrer" aria-label="View my GitHub profile"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+                    <a href="mailto:taqmeelzubeir.dev@gmail.com" class="cta-btn btn-email" aria-label="Send me an email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+                </div>
+                <p>I'm a software engineer, and the fact that computers can generate value from 0's and 1's continues to fascinate me. Outside of work, I'm usually coding, listening to music, or dabbling into some Urdu poetry.</p>
+                <button class="bored-btn" onclick="toggleGame()" id="bored-button" aria-expanded="false">Feeling Bored?</button>
+            </div>
+        </section>
+
+        <section class="game-section" id="game" aria-live="polite">
+            <div class="container">
+                <h2>Let's Play a Game.</h2>
+                <p>It's a classic game of Tic-Tac-Toe. You are X, and I'm O.</p>
+                <p class="disclaimer">I'll give you $10,000,000,000,000 in imaginary money if you win!*</p>
+                <div class="tic-tac-toe" id="gameBoard" role="grid" aria-label="Tic-tac-toe game board">
+                    <button class="cell" data-index="0" role="gridcell" aria-label="Row 1, Column 1"></button>
+                    <button class="cell" data-index="1" role="gridcell" aria-label="Row 1, Column 2"></button>
+                    <button class="cell" data-index="2" role="gridcell" aria-label="Row 1, Column 3"></button>
+                    <button class="cell" data-index="3" role="gridcell" aria-label="Row 2, Column 1"></button>
+                    <button class="cell" data-index="4" role="gridcell" aria-label="Row 2, Column 2"></button>
+                    <button class="cell" data-index="5" role="gridcell" aria-label="Row 2, Column 3"></button>
+                    <button class="cell" data-index="6" role="gridcell" aria-label="Row 3, Column 1"></button>
+                    <button class="cell" data-index="7" role="gridcell" aria-label="Row 3, Column 2"></button>
+                    <button class="cell" data-index="8" role="gridcell" aria-label="Row 3, Column 3"></button>
+                </div>
+                <div class="game-status" id="gameStatus" aria-live="assertive">Your turn! You are X</div>
+                <button class="reset-btn" onclick="resetGame()">Reset Game</button>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 Taqmeel Zubeir. All rights reserved.</p>
+            <p><small>* The Tic-Tac-Toe game is just for fun — no actual money is being given away!</small></p>
+        </footer>
+    </main>
+
+    <script>
+        let gameState = {
+            board: Array(9).fill(''),
+            currentPlayer: 'X',
+            gameActive: true,
+            aiThinking: false
+        };
+
+        const winConditions = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            [0, 4, 8], [2, 4, 6]
+        ];
+
+        function toggleGame() {
+            const gameSection = document.getElementById('game');
+            const boredButton = document.getElementById('bored-button');
+
+            gameSection.classList.toggle('active');
+
+            if (gameSection.classList.contains('active')) {
+                boredButton.setAttribute('aria-expanded', 'true');
+                boredButton.classList.add('hidden');
+                setTimeout(() => {
+                    gameSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 300);
+            } else {
+                boredButton.setAttribute('aria-expanded', 'false');
+                boredButton.classList.remove('hidden');
+            }
+        }
+
+        function handleCellClick(event) {
+            const index = parseInt(event.target.getAttribute('data-index'));
+
+            if (gameState.board[index] || !gameState.gameActive || gameState.aiThinking) {
+                return;
+            }
+
+            makeMove(event.target, index);
+
+            if (gameState.gameActive && gameState.currentPlayer === 'O') {
+                gameState.aiThinking = true;
+                updateGameStatus('AI is thinking...');
+                setTimeout(makeAIMove, 800);
+            }
+        }
+
+        function makeMove(cellElement, index) {
+            gameState.board[index] = gameState.currentPlayer;
+
+            cellElement.textContent = gameState.currentPlayer;
+            cellElement.classList.add(gameState.currentPlayer.toLowerCase());
+            cellElement.setAttribute('aria-label',
+                `${getCellPosition(index)}, played ${gameState.currentPlayer}`);
+
+            checkGameEnd();
+        }
+
+        function checkGameEnd() {
+            const winner = checkWinner();
+
+            if (winner) {
+                endGame(winner);
+                return;
+            }
+
+            if (gameState.board.every(cell => cell !== '')) {
+                endGame('draw');
+                return;
+            }
+
+            gameState.currentPlayer = gameState.currentPlayer === 'X' ? 'O' : 'X';
+            updateGameStatus(gameState.currentPlayer === 'X' ? 'Your turn! You are X' : 'AI\'s turn');
+        }
+
+        function checkWinner() {
+            for (const [a, b, c] of winConditions) {
+                if (gameState.board[a] &&
+                    gameState.board[a] === gameState.board[b] &&
+                    gameState.board[a] === gameState.board[c]) {
+
+                    [a, b, c].forEach(index => {
+                        document.querySelector(`[data-index="${index}"]`).classList.add('win');
+                    });
+
+                    return gameState.board[a];
+                }
+            }
+            return null;
+        }
+
+        function endGame(result) {
+            gameState.gameActive = false;
+
+            let message;
+            if (result === 'draw') {
+                message = "It's a draw! Good game!";
+            } else if (result === 'X') {
+                message = "What! How?";
+            } else {
+                message = "You lose!";
+            }
+
+            updateGameStatus(message);
+        }
+
+        function makeAIMove() {
+            const bestMove = getBestMove();
+            const cellElement = document.querySelector(`[data-index="${bestMove}"]`);
+
+            makeMove(cellElement, bestMove);
+            gameState.aiThinking = false;
+        }
+
+        function getBestMove() {
+            let bestScore = -Infinity;
+            let bestMove = 0;
+
+            for (let i = 0; i < gameState.board.length; i++) {
+                if (gameState.board[i] === '') {
+                    gameState.board[i] = 'O';
+                    const score = minimax(gameState.board, 0, false);
+                    gameState.board[i] = '';
+
+                    if (score > bestScore) {
+                        bestScore = score;
+                        bestMove = i;
+                    }
+                }
+            }
+
+            return bestMove;
+        }
+
+        function minimax(board, depth, isMaximizing) {
+            const winner = evaluateBoard(board);
+
+            if (winner === 'O') return 10 - depth;
+            if (winner === 'X') return depth - 10;
+            if (board.every(cell => cell !== '')) return 0;
+
+            if (isMaximizing) {
+                let maxEval = -Infinity;
+                for (let i = 0; i < board.length; i++) {
+                    if (board[i] === '') {
+                        board[i] = 'O';
+                        const eval = minimax(board, depth + 1, false);
+                        board[i] = '';
+                        maxEval = Math.max(maxEval, eval);
+                    }
+                }
+                return maxEval;
+            } else {
+                let minEval = Infinity;
+                for (let i = 0; i < board.length; i++) {
+                    if (board[i] === '') {
+                        board[i] = 'X';
+                        const eval = minimax(board, depth + 1, true);
+                        board[i] = '';
+                        minEval = Math.min(minEval, eval);
+                    }
+                }
+                return minEval;
+            }
+        }
+
+        function evaluateBoard(board) {
+            for (const [a, b, c] of winConditions) {
+                if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                    return board[a];
+                }
+            }
+            return null;
+        }
+
+        function resetGame() {
+            gameState = {
+                board: Array(9).fill(''),
+                currentPlayer: 'X',
+                gameActive: true,
+                aiThinking: false
+            };
+
+            updateGameStatus('Your turn! You are X');
+
+            document.querySelectorAll('.cell').forEach((cell, index) => {
+                cell.textContent = '';
+                cell.classList.remove('x', 'o', 'win');
+                cell.setAttribute('aria-label', getCellPosition(index));
+            });
+        }
+
+        function updateGameStatus(message) {
+            document.getElementById('gameStatus').textContent = message;
+        }
+
+        function getCellPosition(index) {
+            const row = Math.floor(index / 3) + 1;
+            const col = (index % 3) + 1;
+            return `Row ${row}, Column ${col}`;
+        }
+
+        function initializeGame() {
+            document.querySelectorAll('.cell').forEach((cell, index) => {
+                cell.addEventListener('click', handleCellClick);
+                cell.setAttribute('aria-label', getCellPosition(index));
+            });
+
+            document.querySelectorAll('.cell').forEach(cell => {
+                cell.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        cell.click();
+                    }
+                });
+            });
+        }
+
+        function initializeHeroEffect() {
+            const hero = document.querySelector('.hero');
+            const nameElement = document.querySelector('.name-gradient');
+
+            if (hero && nameElement) {
+                hero.addEventListener('mousemove', (e) => {
+                    const rect = hero.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+                    nameElement.style.backgroundPosition = `${x}% ${y}%`;
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeGame();
+            initializeHeroEffect();
+        });
+
+        window.addEventListener('error', (e) => {
+            console.error('An error occurred:', e.error);
+        });
+    </script>
+</body>
+
+</html>
