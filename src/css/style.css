@@ -1,0 +1,255 @@
+:root {
+    --cream: #F8F3D4;
+    --red: #F6416C;
+    --red-dark: #C71610;
+    --teal: #00B8A9;
+    --blue: #005885;
+    --blue-dark: #2C3E50;
+    --tarmac: #151D24;
+    --yellow: #FFDE7D;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(135deg, var(--cream), white);
+    color: var(--tarmac);
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    overflow-x: hidden;
+}
+
+footer {
+    background-color: var(--cream);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 12px;
+    text-align: center;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.bored-btn {
+    background: var(--teal);
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-top: 30px;
+    max-width: 1000px;
+    padding: 15px;
+    transition: transform 0.3s ease;
+    width: 100%;
+}
+
+.bored-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.bored-btn:hover {
+    transform: scale(1.02);
+}
+
+.btn-email {
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+}
+
+.btn-github {
+    background: linear-gradient(135deg, var(--blue-dark), var(--tarmac));
+}
+
+.btn-linkedin {
+    background: linear-gradient(135deg, var(--teal), var(--blue));
+}
+
+.cell {
+    align-items: center;
+    background: white;
+    border-radius: 12px;
+    border: 2px solid var(--teal);
+    cursor: pointer;
+    display: flex;
+    font-family: "Funnel Display", sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    height: 90px;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    width: 90px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.cell.o {
+    color: var(--teal);
+}
+
+.cell.win {
+    background: var(--cream);
+    box-shadow: 0 0 10px 3px var(--teal);
+    transform: scale(1.025);
+}
+
+.cell.x {
+    color: var(--red);
+}
+
+.cell:active {
+    background: var(--cream);
+    transform: scale(1.05);
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 35px 22px 25px;
+    text-align: center;
+}
+
+.cta {
+    background: var(--yellow);
+}
+
+.cta h2 {
+    font-family: "Funnel Display", sans-serif;
+    font-size: 2.3rem;
+    font-weight: 700;
+}
+
+.cta p {
+    font-size: 1.2rem;
+    margin: 40px auto;
+    max-width: 1000px;
+    text-align: justify;
+    text-align-last: center;
+}
+
+.cta-btn {
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+    display: inline-flex;
+    height: 60px;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    width: 60px;
+}
+
+.cta-btn:hover {
+    transform: scale(1.1);
+}
+
+.cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.cta-buttons a {
+    text-decoration: none;
+}
+
+.game-section {
+    background-color: white;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    text-align: center;
+    transition: all 0.5s ease;
+}
+
+.game-section h2 {
+    color: var(--teal);
+    font-family: "Funnel Display", sans-serif;
+    font-size: 2.3rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.game-section p {
+    font-size: 1.2rem;
+}
+
+.game-section.active {
+    max-height: 800px;
+    opacity: 1;
+}
+
+.game-status {
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin: 15px;
+}
+
+.hero {
+    align-items: center;
+    display: flex;
+    font-family: "Funnel Display", sans-serif;
+    font-weight: 800;
+    height: 100vh;
+    justify-content: center;
+}
+
+.hero h1 {
+    margin-bottom: 35px;
+    transition: background-position 0.2s ease;
+}
+
+.hero p {
+    font-size: 1.5rem;
+}
+
+.name-gradient {
+    background: radial-gradient(circle, var(--red), var(--yellow));
+    background-size: 200%;
+    background-repeat: no-repeat;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: clamp(5rem, 12vw, 7rem);
+    animation: fadeInOnce 2.5s ease-out forwards;
+}
+
+.reset-btn {
+    background: var(--red);
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin: 10px;
+    max-width: 300px;
+    padding: 15px;
+    width: 75%;
+}
+
+.tic-tac-toe {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 25px auto;
+    max-width: 300px;
+}
+
+@keyframes fadeInOnce {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
