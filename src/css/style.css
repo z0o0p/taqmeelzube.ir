@@ -201,12 +201,60 @@ html {
 }
 
 .hero h1 {
-    margin-bottom: 35px;
+    margin: 0;
     transition: background-position 0.2s ease;
 }
 
-.hero p {
-    font-size: 1.5rem;
+.hero .container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-content {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-greeting {
+    font-family: "Raleway", sans-serif;
+    font-size: 1.25rem;
+    margin: 0;
+    text-align: center;
+}
+
+.hero-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-main {
+    align-items: center;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    max-width: 625px;
+}
+
+#bobble-head {
+    height: auto;
+    max-height: 50vh;
+    max-width: 35vh;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-image {
+        display: none;
+    }
 }
 
 .name-gradient {
@@ -216,7 +264,7 @@ html {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: clamp(5rem, 12vw, 7rem);
+    font-size: clamp(4.5rem, 10vw, 5.25rem);
     animation: fadeInOnce 2.5s ease-out forwards;
 }
 
