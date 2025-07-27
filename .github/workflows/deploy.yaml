@@ -22,4 +22,4 @@ jobs:
           aws-region: ${{ secrets.AWS_S3_REGION }}
       - name: Upload file
         run: |
-          aws s3 cp ./src/index.html s3://${{ secrets.AWS_S3_NAME }}/index.html
+          aws s3 cp ./src/* s3://${{ secrets.AWS_S3_NAME }}/
