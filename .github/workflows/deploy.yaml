@@ -20,6 +20,7 @@ jobs:
           role-to-assume: ${{ secrets.AWS_S3_ROLE }}
           role-session-name: cicd-session
           aws-region: ${{ secrets.AWS_S3_REGION }}
-      - name: Upload file
+      - name: Upload files
         run: |
+          aws s3 rm s3://${{ secrets.AWS_S3_NAME }}/ --recursive
           aws s3 cp ./src/ s3://${{ secrets.AWS_S3_NAME }}/ --recursive
