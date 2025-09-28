@@ -1,32 +1,28 @@
-const maxHorizontalOffset = 1.5;
-const maxVerticalOffset = 1
+const maxOffsetX = 1.5;
+const maxOffsetY = 0.75;
 
-function initializeEyeMovementEffect() {
+function initializeCaricatureEyeMovementEffect() {
   const leftPupil = document.getElementById("left-pupil");
   const rightPupil = document.getElementById("right-pupil");
   const overlay = document.getElementById("pupils-overlay");
 
-  const leftMatrix = parseTransformMatrix(leftPupil.getAttribute("transform"));
-  const rightMatrix = parseTransformMatrix(rightPupil.getAttribute("transform"));
+  const leftPupilMatrix = parseTransformMatrix(leftPupil.getAttribute("transform"));
+  const rightPupilMatrix = parseTransformMatrix(rightPupil.getAttribute("transform"));
 
   window.addEventListener("mousemove", (e) => {
-    const rect = overlay.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    const offsetX = ((e.clientX - centerX) / rect.width) * maxHorizontalOffset * 2;
-    const offsetY = ((e.clientY - centerY) / rect.height) * maxVerticalOffset * 2;
+    const boundary = overlay.getBoundingClientRect();
+    const centerX = boundary.left + boundary.width / 2;
+    const centerY = boundary.top + boundary.height / 2;
+    const offsetX = ((e.clientX - centerX) / boundary.width) * maxOffsetX * 2;
+    const offsetY = ((e.clientY - centerY) / boundary.height) * maxOffsetY * 2;
 
     leftPupil.setAttribute(
       "transform",
-      `matrix(${leftMatrix[0]},${leftMatrix[1]},${leftMatrix[2]},${leftMatrix[3]},${
-        leftMatrix[4] + offsetX
-      },${leftMatrix[5] + offsetY})`
+      `matrix(${leftPupilMatrix[0]},${leftPupilMatrix[1]},${leftPupilMatrix[2]},${leftPupilMatrix[3]},${leftPupilMatrix[4] + offsetX},${leftPupilMatrix[5] + offsetY})`
     );
     rightPupil.setAttribute(
       "transform",
-      `matrix(${rightMatrix[0]},${rightMatrix[1]},${rightMatrix[2]},${rightMatrix[3]},${
-        rightMatrix[4] + offsetX
-      },${rightMatrix[5] + offsetY})`
+      `matrix(${rightPupilMatrix[0]},${rightPupilMatrix[1]},${rightPupilMatrix[2]},${rightPupilMatrix[3]},${rightPupilMatrix[4] + offsetX},${rightPupilMatrix[5] + offsetY})`
     );
   });
 }

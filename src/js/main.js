@@ -68,5 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeHeroEffect();
     initializeGame();
     initializeCarousel()
+    initializeCaricatureEyeMovementEffect()
     document.getElementById("copyright-year").textContent = new Date().getFullYear();
 });
