@@ -1,4 +1,5 @@
 let carouselCurrentCard = 0;
+let carouselInterval = setCarouselInterval();
 
 function initializeHeroEffect() {
     const hero = document.querySelector('.hero');
@@ -15,6 +16,7 @@ function initializeHeroEffect() {
 }
 
 function initializeCarousel() {
+    const carousel = document.querySelector('.carousel');
     const passionCard = document.getElementById("passion-card");
     const expertiseCard = document.getElementById("expertise-card");
     const interestsCard = document.getElementById("interests-card");
@@ -22,6 +24,11 @@ function initializeCarousel() {
     passionCard.style.display = 'flex';
     expertiseCard.style.display = 'none';
     interestsCard.style.display = 'none';
+
+    carousel.addEventListener('mouseenter', () => clearInterval(carouselInterval));
+    carousel.addEventListener('mouseleave', () => {
+        carouselInterval = setCarouselInterval();
+    });
 }
 
 function changeCarouselCurrentSlide(offset) {
@@ -53,9 +60,14 @@ function changeCarouselCurrentSlide(offset) {
     }
 }
 
+function setCarouselInterval() {
+    return setInterval(() => changeCarouselCurrentSlide(1), 3500);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initializeHeroEffect();
     initializeGame();
     initializeCarousel()
+    initializeCaricatureEyeMovementEffect()
     document.getElementById("copyright-year").textContent = new Date().getFullYear();
 });
