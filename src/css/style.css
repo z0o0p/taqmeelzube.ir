@@ -131,6 +131,11 @@ html {
     padding: 25px;
     position: relative;
     text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.carousel-card:hover {
+    transform: scale(1.01);
 }
 
 .carousel-dots {
@@ -196,7 +201,7 @@ html {
     opacity: 0;
     overflow: hidden;
     text-align: center;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
 }
 
 .game-section h2 {
@@ -233,7 +238,7 @@ html {
 
 .hero h1 {
     margin: 0;
-    transition: background-position 0.2s ease;
+    transition: background-position 0.3s ease;
 }
 
 .hero .container {
@@ -258,9 +263,23 @@ html {
 }
 
 .hero-image {
-    display: flex;
     align-items: center;
+    display: inline-block;
     justify-content: center;
+    position: relative;
+}
+
+.hero-image img {
+  height: auto;
+  width: 100%;
+}
+
+.hero-image svg {
+  height: 100%;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
 }
 
 .hero-main {
@@ -305,11 +324,12 @@ html {
     border: 2px solid var(--teal);
     color: var(--teal);
     cursor: pointer;
+    font-size: 14px;
     font-weight: 800;
-    height: 35px;
+    height: 40px;
     justify-content: center;
     transition: all 0.3s ease;
-    width: 35px;
+    width: 40px;
 }
 
 .nav-button:hover {
