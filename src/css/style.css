@@ -6,6 +6,7 @@
     --blue: #005885;
     --blue-dark: #2C3E50;
     --tarmac: #151D24;
+    --tarmac-light: #19232C;
     --yellow: #FFDE7D;
 }
 
@@ -36,7 +37,7 @@ html {
 }
 
 .bored-button {
-    background: var(--teal);
+    background: var(--tarmac-light);
     border-radius: 5px;
     border: none;
     color: white;
@@ -57,6 +58,7 @@ html {
 }
 
 .bored-button:hover {
+    background: var(--tarmac);
     transform: scale(1.02);
 }
 
