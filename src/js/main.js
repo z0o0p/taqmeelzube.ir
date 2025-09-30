@@ -61,7 +61,7 @@ function changeCarouselCurrentSlide(offset) {
 }
 
 function setCarouselInterval() {
-    return setInterval(() => changeCarouselCurrentSlide(1), 3500);
+    return setInterval(() => changeCarouselCurrentSlide(1), 5000);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
