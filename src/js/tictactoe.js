@@ -6,6 +6,7 @@ let gameState = {
 };
 const winConditions = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
 const gameStatus = document.getElementById('gameStatus');
+const allowAIStart = document.getElementById('allowAIStart');
 
 function toggleGame() {
   const game = document.getElementById('game');
@@ -38,7 +39,7 @@ function checkGameEnd() {
   if (winner) return endGame(winner);
   if (gameState.board.every(c => c)) return endGame('draw');
   gameState.currentPlayer = gameState.currentPlayer === 'X' ? 'O' : 'X';
-  updateGameStatus(gameState.currentPlayer === 'X' ? 'Your turn! You are X' : "AI's turn");
+  updateGameStatus(gameState.currentPlayer === 'X' ? 'Your turn! You are X' : "AI's turn! They are O");
 }
 
 function checkWinner() {
@@ -58,6 +59,7 @@ function endGame(result) {
 }
 
 function handleCellClick(event) {
+  allowAIStart.style.display = 'none';
   const index = +event.target.dataset.index;
   if (gameState.board[index] || !gameState.gameActive || gameState.aiThinking) return;
   makeMove(event.target, index);
@@ -121,6 +123,7 @@ function resetGame() {
     aiThinking: false
   };
   updateGameStatus('Your turn! You are X');
+  allowAIStart.style.display = 'inline';
   document.querySelectorAll('.cell').forEach((cell, index) => {
     cell.textContent = '';
     cell.classList.remove('x', 'o', 'win');
@@ -138,5 +141,16 @@ function initializeGame() {
         cell.click();
       }
     });
+  });
+  allowAIStart.addEventListener('click', () => {
+    allowAIStart.style.display = 'none';
+    gameState.currentPlayer = 'O';
+    gameState.aiThinking = true;
+    updateGameStatus("AI's turn! They are O");
+    setTimeout(() => {
+      updateGameStatus('AI is thinking...');
+      makeAIMove();
+      gameState.aiThinking = false;
+    }, 1000);
   });
 }
