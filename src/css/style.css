@@ -36,6 +36,19 @@ html {
     scroll-behavior: smooth;
 }
 
+.allow-ai-start {
+    color: var(--blue);
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: underline;
+}
+
+.allow-ai-start:hover,
+.allow-ai-start:focus {
+    color: var(--blue-dark);
+    outline: none;
+}
+
 .bored-button {
     background: var(--tarmac-light);
     border-radius: 5px;
@@ -223,7 +236,7 @@ html {
     opacity: 1;
 }
 
-.game-status {
+.game-status-section {
     font-size: 1.15rem;
     font-weight: 800;
     margin: 15px;

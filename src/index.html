@@ -129,7 +129,10 @@
                     <button class="cell" data-index="7" role="gridcell" aria-label="Row 3, Column 2"></button>
                     <button class="cell" data-index="8" role="gridcell" aria-label="Row 3, Column 3"></button>
                 </div>
-                <div class="game-status" id="gameStatus" aria-live="assertive">Your turn! You are X</div>
+                <div class="game-status-section" aria-live="assertive">
+                    <p id="gameStatus">Your turn! You are X</p>
+                    <span class="allow-ai-start" id="allowAIStart">Or, let AI play first</span>
+                </div>
                 <button class="reset-button" onclick="resetGame()" aria-label="Reset the Tic-Tac-Toe game">Reset Game</button>
                 <p><small>** The game is just for fun — no actual money is being given away.</small></p>
             </div>
