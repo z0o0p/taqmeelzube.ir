@@ -1,53 +1,53 @@
-let gameState = {
-  board: Array(9).fill(''),
-  currentPlayer: 'X',
-  gameActive: true,
-  aiThinking: false
-};
-const winConditions = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-const gameStatus = document.getElementById('gameStatus');
-const allowAIStart = document.getElementById('allowAIStart');
+const winConditions = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+let gameState = createInitialGameState();
+let gameStatus;
+let allowAIStart;
+let cells;
 
-function toggleGame() {
-  const game = document.getElementById('game');
-  const btn = document.getElementById('bored-button');
-  const active = game.classList.toggle('active');
-  btn.setAttribute('aria-expanded', active);
-  btn.classList.toggle('hidden', active);
-  if (active) setTimeout(() => game.scrollIntoView({ behavior: 'smooth', block: 'start' }), 400);
+function createInitialGameState() {
+  return { board: Array(9).fill(''), currentPlayer: 'X', gameActive: true, aiThinking: false };
 }
 
 function getCellPosition(index) {
-  return `Row ${Math.floor(index/3)+1}, Column ${index%3+1}`;
+  return `Row ${Math.floor(index / 3) + 1}, Column ${index % 3 + 1}`;
 }
 
 function updateGameStatus(message) {
   gameStatus.textContent = message;
 }
 
-function makeMove(element, index) {
+function updateCellAvailability() {
+  cells.forEach((cell, index) => {
+    const unavailable = Boolean(gameState.board[index]) || !gameState.gameActive || gameState.aiThinking;
+    cell.setAttribute('aria-disabled', String(unavailable));
+  });
+}
+
+function makeMove(index) {
   const player = gameState.currentPlayer;
   gameState.board[index] = player;
-  element.textContent = player;
-  element.classList.add(player.toLowerCase());
-  element.setAttribute('aria-label', `${getCellPosition(index)}, played ${player}`);
+  const cell = cells[index];
+  cell.textContent = player;
+  cell.classList.add(player.toLowerCase());
+  cell.setAttribute('aria-label', `${getCellPosition(index)}, played ${player}`);
   checkGameEnd();
 }
 
 function checkGameEnd() {
   const winner = checkWinner();
   if (winner) return endGame(winner);
-  if (gameState.board.every(c => c)) return endGame('draw');
+  if (gameState.board.every(Boolean)) return endGame('draw');
   gameState.currentPlayer = gameState.currentPlayer === 'X' ? 'O' : 'X';
   updateGameStatus(gameState.currentPlayer === 'X' ? 'Your turn! You are X' : "AI's turn! They are O");
+  updateCellAvailability();
 }
 
 function checkWinner() {
-  for (const [a,b,c] of winConditions) {
-    const val = gameState.board[a];
-    if (val && val === gameState.board[b] && val === gameState.board[c]) {
-      [a,b,c].forEach(index => document.querySelector(`[data-index="${index}"]`).classList.add('win'));
-      return val;
+  for (const [a, b, c] of winConditions) {
+    const value = gameState.board[a];
+    if (value && value === gameState.board[b] && value === gameState.board[c]) {
+      [a, b, c].forEach(index => cells[index].classList.add('win'));
+      return value;
     }
   }
   return null;
@@ -55,102 +55,114 @@ function checkWinner() {
 
 function endGame(result) {
   gameState.gameActive = false;
-  updateGameStatus(result === 'draw' ? "It's a draw! Good game!" : result === 'X' ? "What! How?" : "You lose!");
+  gameState.aiThinking = false;
+  if (result === 'draw') {
+    updateGameStatus("It's a draw! Good game!");
+    requestPortraitExpression('draw');
+  } else if (result === 'X') {
+    updateGameStatus('What! How?');
+    requestPortraitExpression('surprised');
+  } else {
+    updateGameStatus('You lose!');
+    requestPortraitExpression('playful');
+  }
+  updateCellAvailability();
 }
 
 function handleCellClick(event) {
-  allowAIStart.style.display = 'none';
-  const index = +event.target.dataset.index;
+  const index = Number(event.currentTarget.dataset.index);
   if (gameState.board[index] || !gameState.gameActive || gameState.aiThinking) return;
-  makeMove(event.target, index);
-  if (gameState.gameActive && gameState.currentPlayer === 'O') {
-    gameState.aiThinking = true;
-    updateGameStatus('AI is thinking...');
-    setTimeout(() => {
-      makeAIMove();
-      gameState.aiThinking = false;
-    }, 800);
-  }
+  allowAIStart.hidden = true;
+  makeMove(index);
+  if (gameState.gameActive && gameState.currentPlayer === 'O') queueAIMove();
+}
+
+function queueAIMove(delay = 700, announceTurn = false) {
+  gameState.aiThinking = true;
+  updateGameStatus(announceTurn ? "AI's turn! They are O" : 'AI is thinking...');
+  requestPortraitExpression('thinking');
+  updateCellAvailability();
+  window.setTimeout(() => {
+    if (!gameState.gameActive) return;
+    if (announceTurn) updateGameStatus('AI is thinking...');
+    makeAIMove();
+    gameState.aiThinking = false;
+    if (gameState.gameActive) requestPortraitExpression('attentive');
+    updateCellAvailability();
+  }, delay);
 }
 
 function makeAIMove() {
   const index = getBestMove();
-  makeMove(document.querySelector(`[data-index="${index}"]`), index);
+  if (index >= 0) makeMove(index);
 }
 
 function getBestMove() {
-  let best = -Infinity, move = 0;
-  gameState.board.forEach((v, index) => {
-    if (!v) {
+  let bestScore = -Infinity;
+  let move = -1;
+  gameState.board.forEach((value, index) => {
+    if (!value) {
       gameState.board[index] = 'O';
       const score = minimax(gameState.board, 0, false);
       gameState.board[index] = '';
-      if (score > best) best = score, move = index;
+      if (score > bestScore) { bestScore = score; move = index; }
     }
   });
   return move;
 }
 
-function minimax(board, depth, isMax) {
-  const w = evaluateBoard(board);
-  if (w === 'O') return 10 - depth;
-  if (w === 'X') return depth - 10;
-  if (board.every(c => c)) return 0;
-
-  let best = isMax ? -Infinity : Infinity;
-  for (let index = 0; index < 9; index++) {
+function minimax(board, depth, isMaximizing) {
+  const winner = evaluateBoard(board);
+  if (winner === 'O') return 10 - depth;
+  if (winner === 'X') return depth - 10;
+  if (board.every(Boolean)) return 0;
+  let bestScore = isMaximizing ? -Infinity : Infinity;
+  for (let index = 0; index < board.length; index += 1) {
     if (!board[index]) {
-      board[index] = isMax ? 'O' : 'X';
-      const score = minimax(board, depth + 1, !isMax);
+      board[index] = isMaximizing ? 'O' : 'X';
+      const score = minimax(board, depth + 1, !isMaximizing);
       board[index] = '';
-      best = isMax ? Math.max(best, score) : Math.min(best, score);
+      bestScore = isMaximizing ? Math.max(score, bestScore) : Math.min(score, bestScore);
     }
   }
-  return best;
+  return bestScore;
 }
 
 function evaluateBoard(board) {
-  for (const [a,b,c] of winConditions)
+  for (const [a, b, c] of winConditions) {
     if (board[a] && board[a] === board[b] && board[a] === board[c]) return board[a];
+  }
   return null;
 }
 
 function resetGame() {
-  gameState = {
-    board: Array(9).fill(''),
-    currentPlayer: 'X',
-    gameActive: true,
-    aiThinking: false
-  };
+  gameState = createInitialGameState();
   updateGameStatus('Your turn! You are X');
-  allowAIStart.style.display = 'inline';
-  document.querySelectorAll('.cell').forEach((cell, index) => {
+  allowAIStart.hidden = false;
+  cells.forEach((cell, index) => {
     cell.textContent = '';
     cell.classList.remove('x', 'o', 'win');
     cell.setAttribute('aria-label', getCellPosition(index));
   });
+  updateCellAvailability();
+  requestPortraitExpression('attentive');
 }
 
 function initializeGame() {
-  document.querySelectorAll('.cell').forEach((cell, index) => {
-    cell.addEventListener('click', handleCellClick);
+  gameStatus = document.getElementById('gameStatus');
+  allowAIStart = document.getElementById('allowAIStart');
+  cells = [...document.querySelectorAll('.cell')];
+  if (!gameStatus || !allowAIStart || !cells.length) return;
+  cells.forEach((cell, index) => {
     cell.setAttribute('aria-label', getCellPosition(index));
-    cell.addEventListener('keydown', event => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        cell.click();
-      }
-    });
+    cell.addEventListener('click', handleCellClick);
   });
   allowAIStart.addEventListener('click', () => {
-    allowAIStart.style.display = 'none';
+    if (!gameState.gameActive || gameState.board.some(Boolean)) return;
+    allowAIStart.hidden = true;
     gameState.currentPlayer = 'O';
-    gameState.aiThinking = true;
-    updateGameStatus("AI's turn! They are O");
-    setTimeout(() => {
-      updateGameStatus('AI is thinking...');
-      makeAIMove();
-      gameState.aiThinking = false;
-    }, 1000);
+    queueAIMove(1000, true);
   });
+  document.getElementById('reset-game').addEventListener('click', resetGame);
+  updateCellAvailability();
 }
