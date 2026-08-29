@@ -13,9 +13,14 @@ jobs:
     environment: production
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
+      - name: Minify files
+        uses: nizarmah/auto-minify@v3
+        with:
+          directory: src
+          overwrite: true
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ secrets.AWS_S3_ROLE }}
           role-session-name: cicd-session

@@ -1,73 +1,65 @@
-let carouselCurrentCard = 0;
-let carouselInterval = setCarouselInterval();
-
-function initializeHeroEffect() {
-    const hero = document.querySelector('.hero');
-    const nameElement = document.querySelector('.name-gradient');
-
-    if (hero && nameElement) {
-        hero.addEventListener('mousemove', (e) => {
-            const rect = hero.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) * 100;
-            const y = ((e.clientY - rect.top) / rect.height) * 100;
-            nameElement.style.backgroundPosition = `${x}% ${y}%`;
-        });
-    }
-}
-
-function initializeCarousel() {
-    const carousel = document.querySelector('.carousel');
-    const passionCard = document.getElementById("passion-card");
-    const expertiseCard = document.getElementById("expertise-card");
-    const interestsCard = document.getElementById("interests-card");
-
-    passionCard.style.display = 'flex';
-    expertiseCard.style.display = 'none';
-    interestsCard.style.display = 'none';
-
-    carousel.addEventListener('mouseenter', () => clearInterval(carouselInterval));
-    carousel.addEventListener('mouseleave', () => {
-        carouselInterval = setCarouselInterval();
+function initializeNavigation() {
+  const links = [...document.querySelectorAll('.site-nav-link')];
+  let navResetTimer;
+  const reactToItem = (item, reset = true, state = 'navigation') => {
+    const rect = item.getBoundingClientRect();
+    window.clearTimeout(navResetTimer);
+    requestPortraitExpression(state, {
+      clientX: rect.left + rect.width / 2,
+      clientY: rect.top + rect.height / 2
     });
+    if (reset) navResetTimer = window.setTimeout(() => requestPortraitExpression('idle'), 1100);
+  };
+  links.forEach(link => {
+    link.addEventListener('click', () => reactToItem(link));
+    link.addEventListener('mouseenter', () => reactToItem(link, false));
+    link.addEventListener('mouseleave', () => requestPortraitExpression('idle'));
+    link.addEventListener('focus', () => reactToItem(link, false));
+    link.addEventListener('blur', () => requestPortraitExpression('idle'));
+  });
+  const surprise = document.querySelector('.surprise-trigger');
+  surprise?.addEventListener('mouseenter', () => reactToItem(surprise, false, 'excited'));
+  surprise?.addEventListener('mouseleave', () => requestPortraitExpression('idle'));
+  surprise?.addEventListener('focus', () => reactToItem(surprise, false, 'excited'));
+  surprise?.addEventListener('blur', () => requestPortraitExpression('idle'));
 }
 
-function changeCarouselCurrentSlide(offset) {
-    const passionCard = document.getElementById("passion-card");
-    const expertiseCard = document.getElementById("expertise-card");
-    const interestsCard = document.getElementById("interests-card");
-    const passionDot = document.getElementById("passion-dot");
-    const expertiseDot = document.getElementById("expertise-dot");
-    const interestsDot = document.getElementById("interests-dot");
-
-    carouselCurrentCard = (carouselCurrentCard + offset + 3) % 3;
-
-    passionCard.style.display = 'none';
-    expertiseCard.style.display = 'none';
-    interestsCard.style.display = 'none';
-    passionDot.classList.remove('active');
-    expertiseDot.classList.remove('active');
-    interestsDot.classList.remove('active');
-
-    if (carouselCurrentCard === 0) {
-        passionCard.style.display = 'flex';
-        passionDot.classList.add('active');
-    } else if (carouselCurrentCard === 1) {
-        expertiseCard.style.display = 'flex';
-        expertiseDot.classList.add('active');
-    } else if (carouselCurrentCard === 2) {
-        interestsCard.style.display = 'flex';
-        interestsDot.classList.add('active');
-    }
+function initializeHeroGradient() {
+  const hero = document.querySelector('.hero');
+  const name = document.querySelector('.name-gradient');
+  if (!hero || !name) return;
+  hero.addEventListener('pointermove', event => {
+    const rect = hero.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+    name.style.backgroundPosition = `${x}% ${y}%`;
+  });
 }
 
-function setCarouselInterval() {
-    return setInterval(() => changeCarouselCurrentSlide(1), 5000);
+function initializeGameDialog() {
+  const dialog = document.getElementById('game-dialog');
+  const closeButton = dialog?.querySelector('.dialog-close');
+  const triggers = document.querySelectorAll('.surprise-trigger');
+  if (!dialog || !closeButton) return;
+
+  triggers.forEach(trigger => trigger.addEventListener('click', () => {
+    requestPortraitExpression(gameState.aiThinking ? 'thinking' : 'curious');
+    dialog.showModal();
+  }));
+  closeButton.addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', event => {
+    const rect = dialog.getBoundingClientRect();
+    const inside = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
+    if (!inside) dialog.close();
+  });
+  dialog.addEventListener('close', () => requestPortraitExpression('idle'));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    initializeHeroEffect();
-    initializeGame();
-    initializeCarousel()
-    initializeCaricatureEyeMovementEffect()
-    document.getElementById("copyright-year").textContent = new Date().getFullYear();
+  document.getElementById('copyright-year').textContent = new Date().getFullYear();
+  initializeNavigation();
+  initializeHeroGradient();
+  initializeGame();
+  initializeGameDialog();
+  initializeCaricature();
 });

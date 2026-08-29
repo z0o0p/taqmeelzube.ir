@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Software engineer passionate about creating value through code. Explore my work and connect with me." />
-    <meta name="keywords" content="Taqmeel Zubeir, Software Engineer, Developer, DevOps, Programming" />
-    <meta name="author" content="Taqmeel Zubeir" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Software engineer passionate about creating value through code.">
+    <meta name="keywords" content="Taqmeel Zubeir, Software Engineer, Developer, DevOps Engineer, Platform Engineer">
+    <meta name="author" content="Taqmeel Zubeir">
     <title>Taqmeel Zubeir</title>
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -15,7 +15,7 @@
     <link rel="canonical" href="https://taqmeelzube.ir">
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@800&family=Raleway:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&amp;family=Funnel+Display:wght@800&amp;family=Raleway:wght@100..900&amp;display=swap" rel="stylesheet">
 
     <script type="application/ld+json">
         {
@@ -26,123 +26,117 @@
         "image": "",
         "sameAs": [
             "https://www.linkedin.com/in/taqmeel-zubeir",
-            "https://github.com/z0o0p"
+            "https://in.linkedin.com/in/taqmeel-zubeir",
+            "https://github.com/z0o0p",
+            "https://x.com/nottaqmeel"
         ],
-        "jobTitle": "Software Engineer"  
+        "jobTitle": "Software Engineer"
         }
     </script>
 </head>
 
 <body>
     <main>
-        <section class="hero">
-            <div class="container">
-                <div class="hero-greeting">
-                    <p>Hello. I am</p>
-                </div>
+        <section class="hero page-section" id="home" aria-labelledby="hero-title">
+            <nav class="site-nav" aria-label="Navigation">
+                <a class="site-nav-link" href="#home">Home</a>
+                <a class="site-nav-link" href="#about">About</a>
+                <a class="site-nav-link" href="#work">Work</a>
+                <a class="site-nav-link" href="#contact">Contact</a>
+                <button class="site-nav-link surprise-trigger" type="button" aria-haspopup="dialog" aria-label="Open Game" title="Feeling Bored?">
+                    <img class="game-icon" src="assets/icons/game-controller.svg" alt="" width="28" height="28">
+                </button>
+            </nav>
+
+            <div class="section-shell hero-layout">
+                <p class="hero-greeting">Hello. I am</p>
                 <div class="hero-main">
-                    <div class="hero-content">
-                        <h1><span class="name-gradient">Taqmeel Zubeir</span></h1>
+                    <div class="hero-copy">
+                        <h1 id="hero-title">Taqmeel<br><span class="name-gradient">Zubeir</span></h1>
                     </div>
-                    <div class="hero-image">
-                        <img src="assets/caricature.svg" alt="Taqmeel's caricature" loading="lazy" decoding="async"/>
-                        <svg viewBox="0 0 408 612" xmlns="http://www.w3.org/2000/svg">
-                            <ellipse cx="145.866" cy="220.742" rx="18.313" ry="7.239" fill="#ede9e9" />
-                            <ellipse cx="241.101" cy="219.45" rx="18.567" ry="7.187" fill="#ede9e9" />
-                        </svg>
-                        <svg id="pupils-overlay" viewBox="0 0 408 612" xmlns="http://www.w3.org/2000/svg">
-                            <g id="left-pupil" transform="matrix(1.166858, 0, 0, 1.116182, -24.180632, -30.074436)">
-                                <ellipse cx="145.314" cy="224.764" rx="7.268" ry="7.071" fill="#2f1111" />
-                                <ellipse cx="145.23" cy="224.759" rx="5.545" ry="5.263" fill="#0b0202" />
-                                <ellipse cx="147.506" cy="222.479" rx="1.323" ry="1.284" fill="#fff" />
-                            </g>
-                            <g id="right-pupil" transform="matrix(1.130275, 0, 0, 1.107701, 77.177925, -29.199339)">
-                                <ellipse cx="145.314" cy="224.764" rx="7.268" ry="7.071" fill="#2f1111" />
-                                <ellipse cx="145.23" cy="224.759" rx="5.545" ry="5.263" fill="#0b0202" />
-                                <ellipse cx="147.506" cy="222.479" rx="1.323" ry="1.284" fill="#fff" />
-                            </g>
-                        </svg>
+                    <div class="portrait-stage" id="portrait-stage">
+                        <object class="portrait-object" id="portrait-object" data="assets/caricature.svg" type="image/svg+xml" role="img" aria-label="Taqmeel's caricature">Caricature of Taqmeel Zubeir</object>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="cta">
-            <div class="container">
-                <h2>Let's Start a Conversation.</h2>
-                <div class="cta-buttons">
-                    <a href="https://linkedin.com/in/taqmeel-zubeir" class="cta-button button-linkedin" target="_blank" rel="noopener noreferrer" aria-label="Connect with me on LinkedIn">
-                        <svg class="w-[32px] h-[32px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd" d="M12.51 8.796v1.697a3.738 3.738 0 0 1 3.288-1.684c3.455 0 4.202 2.16 4.202 4.97V19.5h-3.2v-5.072c0-1.21-.244-2.766-2.128-2.766-1.827 0-2.139 1.317-2.139 2.676V19.5h-3.19V8.796h3.168ZM7.2 6.106a1.61 1.61 0 0 1-.988 1.483 1.595 1.595 0 0 1-1.743-.348A1.607 1.607 0 0 1 5.6 4.5a1.601 1.601 0 0 1 1.6 1.606Z" clip-rule="evenodd"/>
-                            <path d="M7.2 8.809H4V19.5h3.2V8.809Z"/>
-                        </svg>
-                    </a>
-                    <a href="https://github.com/z0o0p" class="cta-button button-github" target="_blank" rel="noopener noreferrer" aria-label="View my GitHub profile">
-                        <svg class="w-[32px] h-[32px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd" d="M12.006 2a9.847 9.847 0 0 0-6.484 2.44 10.32 10.32 0 0 0-3.393 6.17 10.48 10.48 0 0 0 1.317 6.955 10.045 10.045 0 0 0 5.4 4.418c.504.095.683-.223.683-.494 0-.245-.01-1.052-.014-1.908-2.78.62-3.366-1.21-3.366-1.21a2.711 2.711 0 0 0-1.11-1.5c-.907-.637.07-.621.07-.621.317.044.62.163.885.346.266.183.487.426.647.71.135.253.318.476.538.655a2.079 2.079 0 0 0 2.37.196c.045-.52.27-1.006.635-1.37-2.219-.259-4.554-1.138-4.554-5.07a4.022 4.022 0 0 1 1.031-2.75 3.77 3.77 0 0 1 .096-2.713s.839-.275 2.749 1.05a9.26 9.26 0 0 1 5.004 0c1.906-1.325 2.74-1.05 2.74-1.05.37.858.406 1.828.101 2.713a4.017 4.017 0 0 1 1.029 2.75c0 3.939-2.339 4.805-4.564 5.058a2.471 2.471 0 0 1 .679 1.897c0 1.372-.012 2.477-.012 2.814 0 .272.18.592.687.492a10.05 10.05 0 0 0 5.388-4.421 10.473 10.473 0 0 0 1.313-6.948 10.32 10.32 0 0 0-3.39-6.165A9.847 9.847 0 0 0 12.007 2Z" clip-rule="evenodd"/>
-                        </svg>
-                    </a>
-                    <a href="mailto:talk@taqmeelzube.ir" class="cta-button button-email" aria-label="Send me an email">
-                        <svg class="w-[32px] h-[32px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M2.038 5.61A2.01 2.01 0 0 0 2 6v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6c0-.12-.01-.238-.03-.352l-.866.65-7.89 6.032a2 2 0 0 1-2.429 0L2.884 6.288l-.846-.677Z"/>
-                            <path d="M20.677 4.117A1.996 1.996 0 0 0 20 4H4c-.225 0-.44.037-.642.105l.758.607L12 10.742 19.9 4.7l.777-.583Z"/>
-                        </svg>
-                    </a>
+        <section class="about page-section" id="about" aria-labelledby="about-title">
+            <div class="section-shell split-layout">
+                <h2 id="about-title">Still fascinated by what computers can make possible.</h2>
+                <div class="prose">
+                    <p>I’m a software engineer, and the fact that computers can create real value from zeros and ones continues to fascinate me.</p>
+                    <p>That curiosity pulls me towards the systems behind a product. I like building the platforms, pipelines, and infrastructure that help teams build and release software with confidence.</p>
+                    <p>Outside work, I usually code for fun, play games, listen to music, or dabble in Urdu poetry.</p>
                 </div>
-                <div class="carousel" role="region" aria-label="About me carousel">
-                    <div class="carousel-card active" id="passion-card" aria-hidden="false">
-                        <p>I'm a software engineer, and the fact that computers can create value from 0's and 1's continues to fascinate me.</p>
-                    </div>
-                    <div class="carousel-card" id="expertise-card" aria-hidden="true">
-                        <p>I'm especially interested in platform engineering — building the tools, pipelines, and infrastructure. Most of my professional work has been in DevOps — working hands-on with Kubernetes clusters with tasks ranging from handling deployments to debugging issues. My experience also includes regularly working with tools like AWS, Azure, Helm, Docker, Prometheus, Grafana, etc.</p>
-                    </div>
-                    <div class="carousel-card" id="interests-card" aria-hidden="true">
-                        <p>Outside of work, I'm usually coding for fun, playing games, listening to music, or dabbling into some Urdu poetry.</p>
-                    </div>
-                </div>
-                <nav class="nav-bar" aria-label="Carousel navigation">
-                    <button class="nav-button" onclick="changeCarouselCurrentSlide(-1)" aria-label="Previous slide">‹</button>
-                    <div class="carousel-dots">
-                        <button class="dot active" id="passion-dot" role="button" aria-label="Passion slide" aria-current="true" tabindex="0"></button>
-                        <button class="dot" id="expertise-dot" role="button" aria-label="Expertise slide" tabindex="0"></button>
-                        <button class="dot" id="interests-dot" role="button" aria-label="Interests slide" tabindex="0"></button>
-                    </div>
-                    <button class="nav-button" onclick="changeCarouselCurrentSlide(1)" aria-label="Next slide">›</button>
-                </nav>
-                <button class="bored-button" onclick="toggleGame()" id="bored-button" aria-expanded="false" aria-controls="game">Feeling Bored?</button>
             </div>
         </section>
 
-        <section class="game-section" id="game" aria-live="polite">
-            <div class="container">
-                <h2>Let's Play a Game.</h2>
-                <p>It's a classic game of Tic-Tac-Toe. You are X, and I'm O.</p>
-                <p class="disclaimer">I'll give you $100,000,000 in imaginary money if you win! **</p>
-                <div class="tic-tac-toe" id="gameBoard" role="grid" aria-label="Tic-Tac-Toe game board">
-                    <button class="cell" data-index="0" role="gridcell" aria-label="Row 1, Column 1"></button>
-                    <button class="cell" data-index="1" role="gridcell" aria-label="Row 1, Column 2"></button>
-                    <button class="cell" data-index="2" role="gridcell" aria-label="Row 1, Column 3"></button>
-                    <button class="cell" data-index="3" role="gridcell" aria-label="Row 2, Column 1"></button>
-                    <button class="cell" data-index="4" role="gridcell" aria-label="Row 2, Column 2"></button>
-                    <button class="cell" data-index="5" role="gridcell" aria-label="Row 2, Column 3"></button>
-                    <button class="cell" data-index="6" role="gridcell" aria-label="Row 3, Column 1"></button>
-                    <button class="cell" data-index="7" role="gridcell" aria-label="Row 3, Column 2"></button>
-                    <button class="cell" data-index="8" role="gridcell" aria-label="Row 3, Column 3"></button>
+        <section class="work page-section" id="work" aria-labelledby="work-title">
+            <div class="section-shell work-layout">
+                <h2 id="work-title">I work on the invisible systems behind software.</h2>
+                <div class="work-copy">
+                    <p>I work across DevOps and platform engineering. I build and improve the tools, pipelines, and infrastructure that teams use to develop, release, and run software.</p>
+                    <p>My work covers infrastructure, deployment architectures, and cloud architecture and design. Along the way, I get to work with tools like AWS, Azure, Kubernetes, Helm, Docker, and Prometheus. I also use Go and Java to build custom tools for managing infrastructure.</p>
                 </div>
-                <div class="game-status-section" aria-live="assertive">
-                    <p id="gameStatus">Your turn! You are X</p>
-                    <span class="allow-ai-start" id="allowAIStart">Or, let AI play first</span>
-                </div>
-                <button class="reset-button" onclick="resetGame()" aria-label="Reset the Tic-Tac-Toe game">Reset Game</button>
-                <p><small>** The game is just for fun — no actual money is being given away.</small></p>
             </div>
         </section>
 
-        <footer>
-            <p>© <span id="copyright-year"></span> Taqmeel Zubeir 🖤</p>
-        </footer>
+        <section class="contact page-section" id="contact" aria-labelledby="contact-title">
+            <div class="section-shell contact-layout">
+                <h2 id="contact-title">Let’s start a conversation.</h2>
+                <p>Have an interesting system, problem, or idea? I’d be glad to hear about it.</p>
+                <div class="contact-links">
+                    <a href="https://linkedin.com/in/taqmeel-zubeir" target="_blank" rel="noopener noreferrer" aria-label="Connect with me on LinkedIn">
+                        <img src="assets/icons/linkedin.svg" alt="" width="32" height="32">
+                    </a>
+                    <a href="https://github.com/z0o0p" target="_blank" rel="noopener noreferrer" aria-label="View my GitHub profile">
+                        <img src="assets/icons/github.svg" alt="" width="32" height="32">
+                    </a>
+                    <a href="https://x.com/nottaqmeel" target="_blank" rel="noopener noreferrer" aria-label="Follow me on X">
+                        <img src="assets/icons/x.svg" alt="" width="32" height="32">
+                    </a>
+                    <a href="mailto:talk@taqmeelzube.ir" aria-label="Send me an email">
+                        <img src="assets/icons/mail.svg" alt="" width="32" height="32">
+                    </a>
+                </div>
+                <button class="mobile-game-cta surprise-trigger" type="button" aria-haspopup="dialog" aria-label="Open Game">
+                    <img src="assets/icons/game-controller.svg" alt="" width="24" height="24">
+                    <span>Or, play a game.</span>
+                </button>
+            </div>
+        </section>
     </main>
 
+    <footer>
+        <p>© <span id="copyright-year"></span> Taqmeel Zubeir</p>
+    </footer>
+
+    <dialog class="game-dialog" id="game-dialog" aria-labelledby="game-title">
+        <div class="game-panel">
+            <button class="dialog-close" type="button" aria-label="Close game">×</button>
+            <h2 id="game-title">Let's Play a Game.</h2>
+            <p>It's a classic game of Tic-Tac-Toe. You are X, and I'm O. I'll give you $1,000,000 in imaginary money if you win!</p>
+            <div class="tic-tac-toe" id="gameBoard" role="grid" aria-label="Tic-Tac-Toe game board">
+                <button class="cell" data-index="0" role="gridcell" aria-label="Row 1, Column 1"></button>
+                <button class="cell" data-index="1" role="gridcell" aria-label="Row 1, Column 2"></button>
+                <button class="cell" data-index="2" role="gridcell" aria-label="Row 1, Column 3"></button>
+                <button class="cell" data-index="3" role="gridcell" aria-label="Row 2, Column 1"></button>
+                <button class="cell" data-index="4" role="gridcell" aria-label="Row 2, Column 2"></button>
+                <button class="cell" data-index="5" role="gridcell" aria-label="Row 2, Column 3"></button>
+                <button class="cell" data-index="6" role="gridcell" aria-label="Row 3, Column 1"></button>
+                <button class="cell" data-index="7" role="gridcell" aria-label="Row 3, Column 2"></button>
+                <button class="cell" data-index="8" role="gridcell" aria-label="Row 3, Column 3"></button>
+            </div>
+            <div class="game-status-section" aria-live="assertive">
+                <p id="gameStatus">Your turn! You are X</p>
+                <button class="allow-ai-start" id="allowAIStart" type="button">Or, let AI play first</button>
+            </div>
+            <button class="reset-button" id="reset-game" type="button" aria-label="Reset the Tic-Tac-Toe game">Reset Game</button>
+        </div>
+    </dialog>
+
+    <script src="js/vendor/gsap.min.js" defer></script>
     <script src="js/caricature.js" defer></script>
     <script src="js/tictactoe.js" defer></script>
     <script src="js/main.js" defer></script>
