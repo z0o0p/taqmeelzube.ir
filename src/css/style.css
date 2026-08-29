@@ -169,15 +169,15 @@ html {
   cursor: pointer;
   display: flex;
   font-family: var(--body);
-  font-size: 1.5rem;
-  height: 2.25rem;
+  font-size: 1.7rem;
+  height: 2.5rem;
   justify-content: center;
   line-height: 1;
   position: absolute;
   right: .75rem;
   top: .75rem;
   transition: color .18s ease;
-  width: 2.25rem;
+  width: 2.5rem;
 }
 
 .dialog-close:hover {

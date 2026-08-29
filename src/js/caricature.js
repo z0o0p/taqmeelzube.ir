@@ -64,14 +64,13 @@ async function initializeCaricature() {
     head: svg.querySelector('#portrait-head'),
     eyes: [svg.querySelector('#eye-shape-viewer-left'), svg.querySelector('#eye-shape-viewer-right')],
     pupils: [svg.querySelector('#pupil-viewer-left'), svg.querySelector('#pupil-viewer-right')],
-    brows: [svg.querySelector('#brow-viewer-left'), svg.querySelector('#brow-viewer-right')],
-    mouth: svg.querySelector('#portrait-mouth')
+    brows: [svg.querySelector('#brow-viewer-left'), svg.querySelector('#brow-viewer-right')]
   };
   if (Object.values(parts).flat().some(part => !part)) return null;
 
   const HEAD_Y_OFFSET = 4;
   gsap.set(parts.head, { svgOrigin: '196 370', y: HEAD_Y_OFFSET });
-  gsap.set([...parts.eyes, ...parts.brows, parts.mouth], { transformOrigin: '50% 50%' });
+  gsap.set([...parts.eyes, ...parts.brows], { transformOrigin: '50% 50%' });
   let blinkCall;
   let idleTimeline;
   let interactionReset;
@@ -237,34 +236,24 @@ async function initializeCaricature() {
       if (Number.isFinite(clientX) && Number.isFinite(clientY)) {
         aimAtPoint(clientX, clientY, {
           force: true,
-          eyebrowLift: expression === 'excited' ? 8 : 1.5
+          eyebrowLift: expression === 'excited' ? 8.5 : 1.5
         });
       }
       gsap.to(parts.eyes, {
-        scaleY: expression === 'excited' ? 1.18 : 1,
+        scaleY: expression === 'excited' ? 1.085 : 1,
         duration: reduceMotion ? 0 : .35,
         ease: 'power2.out',
         overwrite: 'auto'
       });
-      gsap.to(parts.mouth, {
-        scaleX: expression === 'excited' ? 1.12 : 1,
-        scaleY: expression === 'excited' ? 1.35 : 1,
-        duration: reduceMotion ? 0 : .35,
-        ease: 'back.out(2)',
-        overwrite: 'auto'
-      });
       if (expression === 'excited') {
-        browRotation[0](-3);
-        browRotation[1](3);
-        gsap.to(parts.head, { scale: 1.035, duration: reduceMotion ? 0 : .35, ease: 'back.out(2)', overwrite: 'auto' });
+        browRotation[0](-3.2);
+        browRotation[1](3.2);
       }
       return;
     }
     const duration = reduceMotion ? 0 : .6;
     applyPose(poses[expression]);
     gsap.to(parts.eyes, { scaleY: 1, duration, ease: 'power3.out', overwrite: 'auto' });
-    gsap.to(parts.mouth, { scaleX: 1, scaleY: 1, duration, ease: 'power3.out', overwrite: 'auto' });
-    gsap.to(parts.head, { scale: 1, duration, ease: 'power3.out', overwrite: 'auto' });
     if (expression === 'idle') {
       if (hasFinePointer && lastPointer && canAnimate()) aimAtPoint(lastPointer.clientX, lastPointer.clientY);
       else if (reduceMotion) startIdle();
